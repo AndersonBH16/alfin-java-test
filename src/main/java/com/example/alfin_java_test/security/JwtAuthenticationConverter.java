@@ -1,4 +1,3 @@
-// src/main/java/com/example/alfin_java_test/security/JwtAuthenticationConverter.java
 package com.example.alfin_java_test.security;
 
 import org.springframework.http.HttpHeaders;
@@ -27,7 +26,6 @@ public class JwtAuthenticationConverter implements ServerAuthenticationConverter
                 .getHeaders()
                 .getFirst(HttpHeaders.AUTHORIZATION);
 
-        // PROTECCIÓN ante authHeader nulo o no Bearer
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             return Mono.empty();
         }
@@ -42,7 +40,6 @@ public class JwtAuthenticationConverter implements ServerAuthenticationConverter
             );
             return Mono.just(auth);
         } catch (Exception e) {
-            // token inválido o expirado
             return Mono.empty();
         }
     }

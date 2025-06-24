@@ -3,7 +3,6 @@ package com.example.alfin_java_test.controller;
 import com.example.alfin_java_test.security.JwtUtil;
 import com.example.alfin_java_test.security.UserCredentials;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
@@ -20,6 +19,6 @@ public class AuthController {
             String token = jwtUtil.generateToken(creds.getUsername());
             return Mono.just(ResponseEntity.ok(token));
         }
-        return Mono.just(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
+        return Mono.just(ResponseEntity.status(401).build());
     }
 }
