@@ -20,24 +20,20 @@ public class TipoCambioController {
     private final TipoCambioRepository repo;
     private final TipoCambioService svc;
 
-    // Convierte
     @PostMapping("/realizar")
     public Mono<CambioResponse> cambiar(@RequestBody CambioRequest req, Principal p) {
         return svc.realizarCambio(req, p.getName());
     }
 
-    // Listar todos
     @GetMapping
     public Flux<TipoCambio> listar() { return repo.findAll(); }
 
-    // Crear nuevo tipo de cambio
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<TipoCambio> crear(@RequestBody TipoCambio tc) {
         return repo.save(tc);
     }
 
-    // Actualizar existente
     @PutMapping("/{id}")
     public Mono<TipoCambio> actualizar(@PathVariable Long id, @RequestBody TipoCambio tc) {
         return repo.findById(id)

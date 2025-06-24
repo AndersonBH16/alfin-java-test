@@ -23,7 +23,6 @@ public class TipoCambioService {
                     res.setTipoCambio(tc.getTipoCambio());
                     res.setMonedaOrigen(tc.getMonedaOrigen());
                     res.setMonedaDestino(tc.getMonedaDestino());
-                    // registrar auditoría aquí
                     return Mono.just(res);
                 });
     }
