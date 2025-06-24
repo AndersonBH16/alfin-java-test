@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import com.example.alfin_java_test.model.Auditoria;
+import com.example.alfin_java_test.repository.AuditoriaRepository;
 
 import java.security.Principal;
 
@@ -19,6 +21,7 @@ import java.security.Principal;
 public class TipoCambioController {
     private final TipoCambioRepository repo;
     private final TipoCambioService svc;
+    private final AuditoriaRepository auditoriaRepo;
 
     @PostMapping("/realizar")
     public Mono<CambioResponse> cambiar(@RequestBody CambioRequest req, Principal p) {
@@ -43,5 +46,10 @@ public class TipoCambioController {
                     existing.setTipoCambio(tc.getTipoCambio());
                     return repo.save(existing);
                 });
+    }
+
+    @GetMapping("/auditoria")
+    public Flux<Auditoria> listarAuditoria() {
+        return auditoriaRepo.findAll();
     }
 }
